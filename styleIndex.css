@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#container {
+    display: flex;
+    align-items: center;
+}
+
+#inputField {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid rgb(3, 110, 110); 
+    transition: border-color 0.3s; 
+}
+#inputField:focus {
+    border-color: rgb(0, 30, 30); 
+}
+
+#myButton {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(2, 120, 120);
+    color: #fff;
+    border: none;
+    border-radius: 10px; 
+}
+#myButton:hover {
+    background-color: rgb(1, 70, 70);
+}
+
+table {
+    width: 100%; /* La table occupe la totalité de la largeur de son conteneur parent */
+    border-collapse: separate; /* Chaque cellule possède sa propre bordure individuelle */
+    border-spacing: 0; /* Suppression de tout espacement entre les cellules de la table */
+    margin: 20px 0; /* Ajout d'une marge de 20px au-dessus et en dessous de la table pour l'espacer des éléments adjacents */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15); /* Ajout d'une ombre douce autour de l'ensemble de la table */
+    border: 2px solid #3498db; /* Ajout d'une bordure bleue de 2 pixels d'épaisseur autour de l'ensemble de la table */
+}
+table th {
+    background-color: #555; /* Définit une couleur de fond sombre (grise) pour les en-têtes des colonnes */
+    color: white; /* La couleur du texte dans les en-têtes est mise en blanc pour contraster avec le fond sombre */
+    padding: 10px 15px; /* Ajout d'un espacement interne pour éloigner le texte des bordures des en-têtes */
+    border: 1px solid #666; /* Bordure grise foncée d'1 pixel autour de chaque en-tête */
+}
+table td {
+    padding: 10px 15px; /* Espacement intérieur pour éloigner le texte des bordures de chaque cellule */
+    border: 1px solid #ddd; /* Bordure gris clair d'1 pixel autour de chaque cellule pour délimiter les cellules */
+}
+caption {
+    padding: 10px; /* Espacement intérieur autour du texte du titre (caption) */
+    background-color: #3498db; /* Couleur de fond bleue pour faire ressortir le titre de la table */
+    color: white; /* Couleur de texte blanche pour contraster avec le fond bleu */
+    font-size: 18px; /* Augmentation de la taille du texte pour mettre en évidence le titre */
+    font-weight: bold; /* Le texte du titre est rendu gras pour attirer l'attention */
+    text-shadow: 1px 1px 1px #666; /* Une ombre légère est ajoutée derrière le texte pour lui donner de la profondeur et du relief */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1) inset; /* Une ombre interne est appliquée en bas du titre pour donner l'impression qu'il est "enfoncé" */
+    border-bottom: 2px solid #2980b9; /* Une bordure bleue foncée est ajoutée en bas pour séparer visuellement le titre du reste de la table */
+}
+caption:hover {
+    background-color: #2980b9; /* Lorsque l'utilisateur survole le titre, la couleur de fond devient légèrement plus foncée */
+}
+
+#filterTable{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}

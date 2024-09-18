@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tâches</title>
+    <link rel="stylesheet" href="styleIndex.css">
+</head>
+<body>
+    <div id="container"></div>
+    <div id="taskTableContainer"></div>
+    <div id="filterTable">
+        <select id="mySelect" onchange="filterTable()">
+            <option value="all">Tous les tâches</option>
+            <option value="ter">Tâches non terminés</option>
+            <option value="non-ter">Tâches terminés</option>
+        </select>
+    </div>
+    <script src="addTask.js"></script>
+    <script src="tableOperations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskList = [];
+        
+            const container = document.createElement('div');
+            container.id = 'container';
+
+            // button
+            const button = document.createElement('button');
+            button.id = 'myButton';
+            button.textContent = 'Ajouter une tâche';
+
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.id = 'inputField';
+            inputField.placeholder = 'Faire le TD';
+
+            container.appendChild(button);
+            container.appendChild(inputField);
+            
+            // append body
+            document.body.appendChild(container);
+
+            //table
+            const taskTableContainer = document.getElementById('taskTableContainer');
+            if (taskTableContainer) {
+                if (!document.getElementById('taskTable')) { // table non existe
+                    const table = document.createElement('table');
+                    table.id = 'taskTable';
+
+                    const caption = document.createElement('caption');
+                    caption.textContent = 'Liste des tâches';
+                    table.appendChild(caption);
+
+                    const thead = document.createElement('thead');
+                    const tbody = document.createElement('tbody');
+                    tbody.id = 'taskTableBody';
+                    const headerRow = document.createElement('tr');
+                    const headerCellIndex = document.createElement('th');
+                    headerCellIndex.textContent = 'Numéro';
+                    const headerCellCompleted = document.createElement('th');
+                    headerCellCompleted.textContent = 'Terminé?';
+                    const headerCellTask = document.createElement('th');
+                    headerCellTask.textContent = 'Libellé';
+                    headerRow.appendChild(headerCellIndex);
+                    headerRow.appendChild(headerCellCompleted);
+                    headerRow.appendChild(headerCellTask);
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+                    table.appendChild(tbody);
+                    taskTableContainer.appendChild(table);
+                }
+            }
+            else {
+                console.error('taskTableContainer not found');
+            }
+
+            document.body.appendChild(filterTable);
+            document.body.appendChild(taskTableContainer);
+
+            // check
+            button.addEventListener('click', addTask);
+        });
+    </script>
+</body>
+</html>
