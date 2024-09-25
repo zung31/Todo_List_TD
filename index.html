@@ -9,15 +9,10 @@
 <body>
     <div id="container"></div>
     <div id="taskTableContainer"></div>
-    <div id="filterTable">
-        <select id="mySelect" onchange="filterTable()">
-            <option value="all">Tous les tâches</option>
-            <option value="ter">Tâches non terminés</option>
-            <option value="non-ter">Tâches terminés</option>
-        </select>
-    </div>
+    <div id="filterTable"></div>
     <script src="addTask.js"></script>
     <script src="tableOperations.js"></script>
+    <script src="filterTable.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const taskList = [];
@@ -62,9 +57,14 @@
                     headerCellCompleted.textContent = 'Terminé?';
                     const headerCellTask = document.createElement('th');
                     headerCellTask.textContent = 'Libellé';
+                    // button Delete
+                    const headerCellDelete = document.createElement('th');
+                    headerCellDelete.textContent = 'Supprimer?';
+                    // append child in header row
                     headerRow.appendChild(headerCellIndex);
                     headerRow.appendChild(headerCellCompleted);
                     headerRow.appendChild(headerCellTask);
+                    headerRow.appendChild(headerCellDelete);
                     thead.appendChild(headerRow);
                     table.appendChild(thead);
                     table.appendChild(tbody);
@@ -75,7 +75,31 @@
                 console.error('taskTableContainer not found');
             }
 
-            document.body.appendChild(filterTable);
+            // filter
+            const filterTableDiv = document.getElementById('filterTable');
+            const select = document.createElement('select');
+            select.id = 'mySelect';
+
+            const optionAll = document.createElement('option');
+            optionAll.value = 'all';
+            optionAll.textContent = 'Toutes les tâches';
+            select.appendChild(optionAll);
+
+            const optionTer = document.createElement('option');
+            optionTer.value = 'ter';
+            optionTer.textContent = 'Tâches terminés';
+            select.appendChild(optionTer);
+
+            const optionNonTer = document.createElement('option');
+            optionNonTer.value = 'non-ter';
+            optionNonTer.textContent = 'Tâches non terminés';
+            select.appendChild(optionNonTer);
+
+            filterTableDiv.appendChild(select);
+            select.addEventListener('change', filterTable);
+
+            // append body
+            document.body.appendChild(filterTableDiv);
             document.body.appendChild(taskTableContainer);
 
             // check
