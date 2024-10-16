@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compteur de mots</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <textarea v-model="message"></textarea>
+        <p>Nombre de mots: {{ nombreMots }}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: ''
+                }
+            },
+            computed: {
+                nombreMots() {
+                    return this.message.split(' ').length;
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

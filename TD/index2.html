@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Afficher contenu</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <textarea v-model="message"></textarea>
+        <p>Votre texte: {{ message }}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: ''
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

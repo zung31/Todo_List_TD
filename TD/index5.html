@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Afficher en fonction de condition</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="showMess">{{message}}</p>
+        <p v-else>{{ otherMessage }}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showMess: false,
+                    message: 'La condition est vraie',
+                    otherMessage: 'La condition est fausse'
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

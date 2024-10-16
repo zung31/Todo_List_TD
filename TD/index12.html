@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Form</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Reservation Form</h1>
+        <form @submit.prevent="validateForm">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" v-model="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" v-model="email" required>
+            </div>
+            <div>
+                <label for="dateArrivee">Date d'arrivée:</label>
+                <input type="date" id="dateArrivee" v-model="dateArrivee" required>
+            </div>
+            <div>
+                <label for="dateDepart">Date de départ:</label>
+                <input type="date" id="dateDepart" v-model="dateDepart" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div v-if="nbNuits >= 0">
+            <h2>Reservation Details</h2>
+            <p>Name: {{ name }}</p>
+            <p>Email: {{ email }}</p>
+            <p>Date d'arrivée: {{ dateArrivee }}</p>
+            <p>Date de départ: {{ dateDepart }}</p>
+            <p>Nombre de nuits: {{ nbNuits }}</p>
+            <p>Coût total: {{ nbNuits * tarif }}€</p>
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: '',
+                    email: '',
+                    dateArrivee: '',
+                    dateDepart: '',
+                    nbNuits: -1,
+                    tarif: 100 // Tarif par nuit
+                }
+            },
+            methods: {
+                validateForm() {
+                    // verifier les dates
+                    if (this.dateArrivee && this.dateDepart) {
+                        const arrivee = new Date(this.dateArrivee);
+                        const depart = new Date(this.dateDepart);
+                        if (depart > arrivee) {
+                            const timeDiff = depart - arrivee;
+                            this.nbNuits = timeDiff / (1000 * 3600 * 24);
+                        } else {
+                            alert("La date de départ doit être après la date d'arrivée.");
+                            this.nbNuits = -1;
+                        }
+                    } else {
+                        alert("Veuillez entrer des dates valides.");
+                        this.nbNuits = -1;
+                    }
+
+                    // verifier email
+                    if (!this.email.includes('@') || !this.email.includes('.')) {
+                        alert("Veuillez entrer une adresse email valide.");
+                        this.nbNuits = -1;
+                    }
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

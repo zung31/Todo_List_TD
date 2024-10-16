@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Afficher liste noms de fruits</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="fruit in fruits" :key="fruit">
+                {{ `La ${fruit} a une longueur de ${fruit.length} caractères.` }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    fruits: ['Pomme', 'Banane', 'Orange', 'Fraise', 'Kiwi']
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

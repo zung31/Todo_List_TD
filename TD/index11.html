@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consersion F C Page</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome Bienvenue Bienvenido</h1>
+        <button @click="selectedLanguage = 'en'">English</button>
+        <button @click="selectedLanguage = 'fr'">French</button>
+        <button @click="selectedLanguage = 'es'">Espagnol</button>
+
+        <div>
+            <p v-if="selectedLanguage === 'en'">Welcome to my site web</p>
+            <p v-if="selectedLanguage === 'fr'">Bienvenue sur mon site web</p>
+            <p v-if="selectedLanguage === 'es'">Bienvenido a mi sitio web</p>
+        </div>
+        
+        <h3>{{ temperatureTitle }}</h3>
+        <input type="number" v-model="degree" placeholder="">
+        <p v-if="degree >= 100">{{ boilingMessage }}</p>
+        <p>{{ temperatureFahrenheitMessage }}: {{ calculatedValue }}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    selectedLanguage: 'en', // Default language
+                    degree: 0 // Default temperature in Celsius
+                }
+            },
+            computed: {
+                calculatedValue() {
+                    return (this.degree * 9/5) + 32; // Convert Celsius to Fahrenheit
+                },
+                temperatureTitle() {
+                    switch (this.selectedLanguage) {
+                        case 'fr':
+                            return 'Température en degré Celsius:';
+                        case 'es':
+                            return 'Temperatura en grados Celsius:';
+                        default:
+                            return 'Temperature in degrees Celsius:';
+                    }
+                },
+                boilingMessage() {
+                    switch (this.selectedLanguage) {
+                        case 'fr':
+                            return "L'eau bout à cette température";
+                        case 'es':
+                            return 'El agua hierve a esta temperatura';
+                        default:
+                            return 'Water boils at this temperature';
+                    }
+                },
+                temperatureFahrenheitMessage() {
+                    switch (this.selectedLanguage) {
+                        case 'fr':
+                            return 'Température en degrés Fahrenheit';
+                        case 'es':
+                            return 'Temperatura en grados Fahrenheit';
+                        default:
+                            return 'Temperature in degrees Fahrenheit';
+                    }
+                }
+            },
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

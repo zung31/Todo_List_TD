@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Page</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome Bienvenue Bienvenido</h1>
+        <button @click="selectedLanguage = 'en'">English</button>
+        <button @click="selectedLanguage = 'fr'">French</button>
+        <button @click="selectedLanguage = 'es'">Espagnol</button>
+        <p v-if="selectedLanguage === 'en'">Welcome to my site web</p>
+        <p v-if="selectedLanguage === 'fr'">Bienvenue sur mon site web</p>
+        <p v-if="selectedLanguage === 'es'">Bienvenido a mi sitio web</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    selectedLanguage: 'en' // Default language
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
