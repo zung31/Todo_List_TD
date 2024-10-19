@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Superheros</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <script src="https://unpkg.com/axios@latest"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 class="my-4" style="margin-left: 15px;">Liste des superheros</h1>
+        <div class="form-group mb-4" style="margin-left: 15px;">
+            <input type="text" class="form-control" placeholder="Entrer nom de superhero" v-model="searchQuery">
+            <button class="btn btn-primary mt-2" @click="resetSearch">Reinitialiser</button>
+        </div>
+        <div class="form-check mb-4" style="margin-left: 15px;">
+            <input class="form-check-input" type="checkbox" id="afficherPouvoirs" v-model="afficherPouvoirs" @change="onCheckboxChange">
+            <label class="form-check-label" for="afficherPouvoirs" style="font-size: 16px;">
+                Afficher les pouvoirs
+            </label>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action d-flex w-100 justify-content-between" v-for="superhero in filteredSuperheros" :key="superhero.id">
+                <h5 class="mb-1">{{ superhero.name }}</h5>
+                <img :src="superhero.images.md" alt="superhero.image" class="rounded-circle" style="width: 50px; align-items: center;">
+                <small style="font-size: 16px;" v-if="afficherPouvoirs === true">Intelligence: {{ superhero.powerstats.intelligence }}, Strength: {{ superhero.powerstats.strength }}, Speed: {{ superhero.powerstats.speed }}, Durability: {{ superhero.powerstats.durability }}, Power: {{ superhero.powerstats.power }}, Combat: {{ superhero.powerstats.combat }}</small>
+                <small style="font-size: 16px;">{{ superhero.id }}</small>
+            </a>
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    superheros: [],
+                    afficherPouvoirs: false,
+                    searchQuery: ''
+                }
+            },
+            computed: {
+                filteredSuperheros() {
+                    return this.superheros.filter(superhero => {
+                        return superhero.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+                    });
+                }
+            },
+            methods: {
+                onCheckboxChange(event) {
+                    console.log('Checkbox state:', event.target.checked); // checkbox checked et afficher dans console
+                },
+                resetSearch() {
+                    this.searchQuery = '';
+                }
+            },
+            mounted() {
+                axios.get('https://cdn.jsdelivr.net/gh/rtomczak/superhero-api@0.3.0/api/all.json')
+                .then(response => {
+                    this.superheros = response.data; // Récupérer les données des superhéros
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
