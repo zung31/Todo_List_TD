@@ -81,7 +81,7 @@ function App() {
       {selectedHero ? (
         <div>
           <h2>{selectedHero.name}</h2>
-          <p>Id: {selectedHero.idApi}</p>
+          <p>Id: {selectedHero.aip}</p>
           <p>Slug: {selectedHero.slug}</p>
           <img src={`https://cdn.jsdelivr.net/gh/rtomczak/superhero-api@0.3.0/api/images/sm/${selectedHero.slug}.jpg`} alt={selectedHero.name} />
           <button onClick={handleBackToList}>Retour à la liste</button>

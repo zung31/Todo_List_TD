@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+}
+
+.col-md-4 {
+  align-self: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: #fff; /* thay vì thành blue thì mình cho thành trắng hi */
+  box-shadow: 0 8px 16px 0 rgba(0, 123, 255, 0.3);
+}
+
+.card-body {
+  padding-left: 40px;
+}
+
+button, input, optgroup, select, textarea {
+  margin-right: 20px;
+}
+
+.btn-back {
+  margin-top: 20px;
+}
+
+.form-group{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  flex: 1;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.form-group input {
+  flex: 2;
+}
+
+.input-name{
+  display: flex;
+  align-items: center;
+  flex: 2;
+  margin-bottom: 15px;
+}

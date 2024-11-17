@@ -25,7 +25,12 @@
             <a href="#" class="list-group-item list-group-item-action d-flex w-100 justify-content-between" v-for="superhero in filteredSuperheros" :key="superhero.id">
                 <h5 class="mb-1">{{ superhero.name }}</h5>
                 <img :src="superhero.images.md" alt="superhero.image" class="rounded-circle" style="width: 50px; align-items: center;">
-                <small style="font-size: 16px;" v-if="afficherPouvoirs === true">Intelligence: {{ superhero.powerstats.intelligence }}, Strength: {{ superhero.powerstats.strength }}, Speed: {{ superhero.powerstats.speed }}, Durability: {{ superhero.powerstats.durability }}, Power: {{ superhero.powerstats.power }}, Combat: {{ superhero.powerstats.combat }}</small>
+                <small style="font-size: 16px;" v-if="afficherPouvoirs === true">Intelligence: {{ superhero.powerstats.intelligence }}, 
+                    Strength: {{ superhero.powerstats.strength }}, 
+                    Speed: {{ superhero.powerstats.speed }}, 
+                    Durability: {{ superhero.powerstats.durability }}, 
+                    Power: {{ superhero.powerstats.power }}, 
+                    Combat: {{ superhero.powerstats.combat }}</small>
                 <small style="font-size: 16px;">{{ superhero.id }}</small>
             </a>
         </div>
